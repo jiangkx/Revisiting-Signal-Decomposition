@@ -133,25 +133,10 @@ model.summary()
 callbacks = [EarlyStopping(monitor='val_loss',patience=50,verbose=2),
              ModelCheckpoint('LSTMcheckpoints/LSTMbest_%s.h5'%(rd),monitor='val_loss',
                              save_best_only=1, verbose=0)]
-# callbacks = [ModelCheckpoint('LSTMcheckpoints/LSTMbest_%s.h5'%(rd),monitor='val_loss',
-#                              save_best_only=1, verbose=0)]
-
-
-import datetime
-import time
-current_time1 = datetime.datetime.now()
-start = time.clock()
-print("current_time:    " + str(current_time1))
 
 history = model.fit(train_X, train_y, epochs=1000, batch_size=256,
                     callbacks = callbacks,
                     validation_data = (test_X,test_y),validation_freq = val_freq)
-
-print((time.clock() - start)/60)
-current_time2 = datetime.datetime.now()
-print("current_time:    " + str(current_time2))
-
-
 
 
 def RMSE(real,pred):
