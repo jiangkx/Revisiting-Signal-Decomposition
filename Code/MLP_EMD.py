@@ -98,19 +98,9 @@ model.add(Dense(units=1))
 model.compile(optimizer=Adagrad(lr=0.01), loss= "mae", metrics=['mae'])
 model.summary()
 
-import datetime
-import time
-current_time1 = datetime.datetime.now()
-start = time.clock()
-print("current_time:    " + str(current_time1))
-
 history = model.fit(train_X, train_y, epochs=epoch, batch_size=batch_size, verbose=1, shuffle=False,
                     callbacks = callbacks,
                     validation_data = (validate_X,validate_y),validation_freq = val_freq)
-
-print((time.clock() - start)/60)
-current_time2 = datetime.datetime.now()
-print("current_time:    " + str(current_time2))
 
 def RMSE(real,pred):
     real = np.reshape(real,(len(real),1))
